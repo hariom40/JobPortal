@@ -30,7 +30,7 @@ const Login = () => {
         e.preventDefault();
         try {
             dispatch(setLoading(true));
-            const res = await axios.post(`https://jobportal-9ymu.onrender.com/api/v1/user/login`, input, {
+            const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -43,7 +43,7 @@ const Login = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.response?.data?.message || "An error occurred. Please try again.");
+            toast.error(error.response.data.message);
         } finally {
             dispatch(setLoading(false));
         }
@@ -52,7 +52,7 @@ const Login = () => {
         if(user){
             navigate("/");
         }
-    },[navigate, user])
+    },[])
     return (
         <div>
             <Navbar />
@@ -66,8 +66,7 @@ const Login = () => {
                             value={input.email}
                             name="email"
                             onChange={changeEventHandler}
-                            placeholder="hariom@gmail.com"
-                            required
+                            placeholder="patel@gmail.com"
                         />
                     </div>
 
@@ -78,8 +77,7 @@ const Login = () => {
                             value={input.password}
                             name="password"
                             onChange={changeEventHandler}
-                            placeholder="xxxxxxxxx"
-                            required
+                            placeholder="patel@gmail.com"
                         />
                     </div>
                     <div className='flex items-center justify-between'>
@@ -92,7 +90,6 @@ const Login = () => {
                                     checked={input.role === 'student'}
                                     onChange={changeEventHandler}
                                     className="cursor-pointer"
-                                    required
                                 />
                                 <Label htmlFor="r1">Student</Label>
                             </div>
@@ -104,7 +101,6 @@ const Login = () => {
                                     checked={input.role === 'recruiter'}
                                     onChange={changeEventHandler}
                                     className="cursor-pointer"
-                                    required
                                 />
                                 <Label htmlFor="r2">Recruiter</Label>
                             </div>

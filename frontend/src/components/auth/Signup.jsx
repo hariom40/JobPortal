@@ -6,6 +6,7 @@ import { RadioGroup } from '../ui/radio-group'
 import { Button } from '../ui/button'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { USER_API_END_POINT } from '@/utils/constant'
 import { toast } from 'sonner'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLoading } from '@/redux/authSlice'
@@ -45,7 +46,7 @@ const Signup = () => {
 
         try {
             dispatch(setLoading(true));
-            const res = await axios.post("https://jobportal-9ymu.onrender.com/api/v1/user/register", formData, {
+            const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
                 headers: { 'Content-Type': "multipart/form-data" },
                 withCredentials: true,
             });
@@ -65,7 +66,7 @@ const Signup = () => {
         if(user){
             navigate("/");
         }
-    },[navigate, user])
+    },[])
     return (
         <div>
             <Navbar />
@@ -79,7 +80,7 @@ const Signup = () => {
                             value={input.fullname}
                             name="fullname"
                             onChange={changeEventHandler}
-                            placeholder="hariom"
+                            placeholder="patel"
                         />
                     </div>
                     <div className='my-2'>
@@ -89,7 +90,7 @@ const Signup = () => {
                             value={input.email}
                             name="email"
                             onChange={changeEventHandler}
-                            placeholder="hariom@gmail.com"
+                            placeholder="patel@gmail.com"
                         />
                     </div>
                     <div className='my-2'>
@@ -109,7 +110,7 @@ const Signup = () => {
                             value={input.password}
                             name="password"
                             onChange={changeEventHandler}
-                            placeholder=" xxxxxxxxxxx"
+                            placeholder="patel@gmail.com"
                         />
                     </div>
                     <div className='flex items-center justify-between'>
