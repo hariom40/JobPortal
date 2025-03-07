@@ -52,7 +52,7 @@ const Login = () => {
         if(user){
             navigate("/");
         }
-    },[])
+    },[navigate, user])
     return (
         <div>
             <Navbar />

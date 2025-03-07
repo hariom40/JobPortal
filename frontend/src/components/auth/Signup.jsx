@@ -66,7 +66,7 @@ const Signup = () => {
         if(user){
             navigate("/");
         }
-    },[])
+    },[navigate, user])
     return (
         <div>
             <Navbar />
